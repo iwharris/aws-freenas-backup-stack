@@ -6,8 +6,10 @@ export class AwsFreenasBackupStack extends Stack {
     constructor(scope: App, id: string, props?: StackProps) {
         super(scope, id, props);
 
+        const bucketName = this.node.tryGetContext('bucket_name');
+
         const bucket = new s3.Bucket(this, 'FreenasS3BackupBucket', {
-            bucketName: 'freenas-backup.ianharris.io',
+            bucketName,
             // KMS_MANAGED is preferable but won't work when backing up small files
             // See https://github.com/rclone/rclone/issues/1824 for details
             encryption: s3.BucketEncryption.S3_MANAGED,

@@ -8,8 +8,9 @@
         "build": "tsc",
         "watch": "tsc -w",
         "cdk": "cdk",
-        "deploy": "cdk deploy --require-approval broadening",
-        "synth": "cdk synth"
+        "deploy": "npm run -s build && cdk deploy --require-approval broadening",
+        "diff": "npm run -s build && cdk diff",
+        "synth": "npm run -s build && cdk synth"
     },
     "devDependencies": {
         "@aws-cdk/assert": "^1.22.0",
