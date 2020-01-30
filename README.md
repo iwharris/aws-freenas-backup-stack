@@ -1,15 +1,19 @@
-# Welcome to your CDK TypeScript project!
+# Personal freenas backup in AWS
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`AwsFreenasBackupStack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+## Usage
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+To deploy the stack:
 
-## Useful commands
+```bash
+npm install
+npm run build
+npm deploy
+```
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+The `accessKeyId` and `secretAccessKey` will be shown in the output; enter those into FreeNAS.
+
+To preview the CloudFormation changeset:
+
+```bash
+npm run synth
+```
