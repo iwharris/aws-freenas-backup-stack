@@ -17,7 +17,7 @@ export class AwsFreenasBackupStack extends Stack {
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
             lifecycleRules: [
                 {
-                    // Default
+                    id: 'default',
                     enabled: true,
                     abortIncompleteMultipartUploadAfter: Duration.days(7),
                     transitions: [
@@ -28,7 +28,7 @@ export class AwsFreenasBackupStack extends Stack {
                     ],
                 },
                 {
-                    // lightroom/
+                    id: 'lightroom-transition-glacier',
                     enabled: true,
                     prefix: 'lightroom',
                     transitions: [
@@ -39,7 +39,7 @@ export class AwsFreenasBackupStack extends Stack {
                     ],
                 },
                 {
-                    // backup/
+                    id: 'backup-transition-glacier',
                     enabled: true,
                     prefix: 'backup',
                     transitions: [
