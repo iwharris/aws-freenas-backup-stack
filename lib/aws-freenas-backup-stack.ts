@@ -17,10 +17,35 @@ export class AwsFreenasBackupStack extends Stack {
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
             lifecycleRules: [
                 {
+                    // Default
+                    enabled: true,
+                    abortIncompleteMultipartUploadAfter: Duration.days(7),
                     transitions: [
                         {
                             transitionAfter: Duration.days(1),
                             storageClass: s3.StorageClass.INTELLIGENT_TIERING,
+                        },
+                    ],
+                },
+                {
+                    // lightroom/
+                    enabled: true,
+                    prefix: 'lightroom',
+                    transitions: [
+                        {
+                            transitionAfter: Duration.days(7),
+                            storageClass: s3.StorageClass.GLACIER,
+                        },
+                    ],
+                },
+                {
+                    // backup/
+                    enabled: true,
+                    prefix: 'backup',
+                    transitions: [
+                        {
+                            transitionAfter: Duration.days(7),
+                            storageClass: s3.StorageClass.GLACIER,
                         },
                     ],
                 },
