@@ -13,8 +13,15 @@ export class AwsFreenasBackupStack extends Stack {
             // KMS_MANAGED is preferable but won't work when backing up small files
             // See https://github.com/rclone/rclone/issues/1824 for details
             encryption: s3.BucketEncryption.S3_MANAGED,
+
+            // Allow authenticated access only
             publicReadAccess: false,
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+
+            // Enable bucket-level versioning
+            versioned: true,
+
+            // Transition files to cheaper storage after a certain interval
             lifecycleRules: [
                 {
                     id: 'default',
@@ -26,6 +33,7 @@ export class AwsFreenasBackupStack extends Stack {
                             storageClass: s3.StorageClass.INTELLIGENT_TIERING,
                         },
                     ],
+                    noncurrentVersionExpiration: Duration.days(1),
                 },
                 {
                     id: 'lightroom-transition-glacier',
@@ -48,6 +56,18 @@ export class AwsFreenasBackupStack extends Stack {
                             storageClass: s3.StorageClass.GLACIER,
                         },
                     ],
+                },
+                {
+                    id: 'scans-transition-glacier',
+                    enabled: true,
+                    prefix: 'scans',
+                    transitions: [
+                        {
+                            transitionAfter: Duration.days(1),
+                            storageClass: s3.StorageClass.GLACIER,
+                        },
+                    ],
+                    noncurrentVersionExpiration: Duration.days(7),
                 },
             ],
             removalPolicy: RemovalPolicy.RETAIN,
