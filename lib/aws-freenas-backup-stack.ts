@@ -1,6 +1,5 @@
-import * as s3 from '@aws-cdk/aws-s3';
-import * as iam from '@aws-cdk/aws-iam';
-import { App, RemovalPolicy, Duration, Stack, StackProps, CfnOutput } from '@aws-cdk/core';
+import { App, RemovalPolicy, Duration, Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
+import { aws_s3 as s3, aws_iam as iam } from 'aws-cdk-lib';
 
 export class AwsFreenasBackupStack extends Stack {
     constructor(scope: App, id: string, props?: StackProps) {

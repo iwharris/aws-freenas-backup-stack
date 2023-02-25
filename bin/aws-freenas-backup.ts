@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import * as cdk from '@aws-cdk/core';
+import { App } from 'aws-cdk-lib';
 import { AwsFreenasBackupStack } from '../lib/aws-freenas-backup-stack';
 
-const app = new cdk.App();
+const app = new App();
 new AwsFreenasBackupStack(app, 'AwsFreenasBackupStack');
