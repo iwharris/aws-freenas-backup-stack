@@ -97,7 +97,7 @@ export class AwsFreenasBackupStack extends Stack {
                 // Allow some bucket-level actions
                 new iam.PolicyStatement({
                     effect: iam.Effect.ALLOW,
-                    actions: ['s3:ListBucket'],
+                    actions: ['s3:ListBucket', 's3:GetBucketLocation'],
                     resources: [bucket.bucketArn],
                 }),
 
