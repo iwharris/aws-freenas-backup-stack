@@ -41,7 +41,11 @@ export class AwsFreenasBackupStack extends Stack {
                     transitions: [
                         {
                             transitionAfter: Duration.days(7),
-                            storageClass: s3.StorageClass.GLACIER,
+                            storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
+                        },
+                        {
+                            transitionAfter: Duration.days(30),
+                            storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
                         },
                     ],
                 },
@@ -52,7 +56,11 @@ export class AwsFreenasBackupStack extends Stack {
                     transitions: [
                         {
                             transitionAfter: Duration.days(7),
-                            storageClass: s3.StorageClass.GLACIER,
+                            storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
+                        },
+                        {
+                            transitionAfter: Duration.days(30),
+                            storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
                         },
                     ],
                 },
@@ -63,7 +71,11 @@ export class AwsFreenasBackupStack extends Stack {
                     transitions: [
                         {
                             transitionAfter: Duration.days(1),
-                            storageClass: s3.StorageClass.GLACIER,
+                            storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
+                        },
+                        {
+                            transitionAfter: Duration.days(30),
+                            storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
                         },
                     ],
                     noncurrentVersionExpiration: Duration.days(7),
