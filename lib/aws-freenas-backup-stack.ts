@@ -44,7 +44,7 @@ export class AwsFreenasBackupStack extends Stack {
                             storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
                         },
                         {
-                            transitionAfter: Duration.days(30),
+                            transitionAfter: Duration.days(100),
                             storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
                         },
                     ],
@@ -59,7 +59,7 @@ export class AwsFreenasBackupStack extends Stack {
                             storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
                         },
                         {
-                            transitionAfter: Duration.days(30),
+                            transitionAfter: Duration.days(100),
                             storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
                         },
                     ],
@@ -74,7 +74,7 @@ export class AwsFreenasBackupStack extends Stack {
                             storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
                         },
                         {
-                            transitionAfter: Duration.days(30),
+                            transitionAfter: Duration.days(100),
                             storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
                         },
                     ],
