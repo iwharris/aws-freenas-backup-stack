@@ -12,8 +12,18 @@
         "diff": "npm run -s build && cdk diff",
         "synth": "npm run -s build && cdk synth"
     },
+    "prettier": {
+        "arrowParens": "always",
+        "bracketSpacing": true,
+        "endOfLine": "lf",
+        "printWidth": 100,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "es5",
+        "useTabs": false
+    },
     "devDependencies": {
-        "@iwharris/prettier-config": "0.0.3",
         "@types/node": "^18.14.1",
         "@typescript-eslint/eslint-plugin": "^5.45.0",
         "@typescript-eslint/parser": "^5.45.0",
