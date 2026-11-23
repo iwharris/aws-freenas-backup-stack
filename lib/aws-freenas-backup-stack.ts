@@ -65,6 +65,19 @@ export class AwsFreenasBackupStack extends Stack {
                     ],
                 },
                 {
+                    id: 'paperless-retention',
+                    enabled: true,
+                    prefix: 'paperless',
+                    transitions: [
+                        {
+                            transitionAfter: Duration.days(1),
+                            storageClass: s3.StorageClass.DEEP_ARCHIVE,
+                        },
+                    ],
+                    expiration: Duration.days(90),
+                    noncurrentVersionExpiration: Duration.days(1),
+                },
+                {
                     id: 'scans-transition-glacier',
                     enabled: true,
                     prefix: 'scans',
