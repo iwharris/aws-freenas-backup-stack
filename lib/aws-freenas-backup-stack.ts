@@ -35,19 +35,16 @@ export class AwsFreenasBackupStack extends Stack {
                     noncurrentVersionExpiration: Duration.days(1),
                 },
                 {
-                    id: 'lightroom-transition-glacier',
+                    id: 'lightroom-deep-archive',
                     enabled: true,
                     prefix: 'lightroom',
                     transitions: [
                         {
-                            transitionAfter: Duration.days(7),
-                            storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
-                        },
-                        {
-                            transitionAfter: Duration.days(100),
-                            storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
+                            transitionAfter: Duration.days(1),
+                            storageClass: s3.StorageClass.DEEP_ARCHIVE,
                         },
                     ],
+                    noncurrentVersionExpiration: Duration.days(1),
                 },
                 {
                     id: 'backup-transition-glacier',
@@ -78,20 +75,16 @@ export class AwsFreenasBackupStack extends Stack {
                     noncurrentVersionExpiration: Duration.days(1),
                 },
                 {
-                    id: 'scans-transition-glacier',
+                    id: 'scans-deep-archive',
                     enabled: true,
                     prefix: 'scans',
                     transitions: [
                         {
                             transitionAfter: Duration.days(1),
-                            storageClass: s3.StorageClass.GLACIER, // retrieval between 1 minute and 12 hours
-                        },
-                        {
-                            transitionAfter: Duration.days(100),
-                            storageClass: s3.StorageClass.DEEP_ARCHIVE, // retrieval within 12 hours
+                            storageClass: s3.StorageClass.DEEP_ARCHIVE,
                         },
                     ],
-                    noncurrentVersionExpiration: Duration.days(7),
+                    noncurrentVersionExpiration: Duration.days(1),
                 },
             ],
             removalPolicy: RemovalPolicy.RETAIN,
